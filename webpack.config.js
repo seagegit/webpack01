@@ -2,9 +2,21 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: ['./src/app.js', './src/sub.js'],
+    entry: { app: './src/app.js' },
     output: {
         path: path.resolve(__dirname, 'public') ,
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ]
+            }
+        ]
     }
 }
